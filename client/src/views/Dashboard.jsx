@@ -6,6 +6,7 @@ import FileUpload from '../components/FileUpload'
 import ExpenseChart from '../components/ExpenseChart'
 import Header from '../components/Header'
 import Create from './Create'
+import Edit from './Edit'
 
 
 
@@ -13,11 +14,15 @@ const Dashboard = () => {
 
     const [expenseList, setExpenseList] = useState([]);
 
-    const expenseToChart = () => {
+    const [isActive, setIsActive] = useState(false);
 
-        
+    const handleClick = (e) => {
+        setIsActive(current => !current);
     }
 
+    const addUpdatedExpense = (updatedExpense) => {
+        setExpenseList([...expenseList])
+    }
 
     const addExpensetoList = (newExpense) => {
         setExpenseList([...expenseList, newExpense])
@@ -31,31 +36,12 @@ const Dashboard = () => {
     useEffect(()=>{
         axios.get(`http://localhost:8000/api/expense`)
             .then(res=>{
-                console.log(res);
+                console.log(res.data);
                 setExpenseList(res.data)
             })
             .catch(err=> console.log(err))
 
     }, [])
-    
-
-    // const [fileData, setData] = useState([]);
-    // const handleFileLoad = (csvData) => {
-    //     setData(csvData);
-    // };
-    
-    // const handleSubmit = (e) =>{
-    //     e.preventDefault();
-
-    //     // console.log(fileData)
-    //     axios.post(`http://localhost:8000/api/expenses`, fileData)
-    //         .then(res=>{
-    //             console.log(res.data)
-    //             // const newData = (res.data)
-    //             // setExpenseList()
-    //         })
-    //         .catch(err=> console.log(err))
-    // }
 
     const handleDelete =(deleteId)=>{
         axios.delete(`http://localhost:8000/api/expense/${deleteId}`)
@@ -68,26 +54,15 @@ const Dashboard = () => {
     }
 
   return (
-    <div className="py-20 px-20">
-
-        
+    <div className="py-5 px-10">
         <Header newHeader="Expense Tracker"/>
         
-        
-        
-        <div className="flex justify-between gap-20">
+        <div className="flex justify-between gap-10">
             <div className="py-40"> 
-                <h4 className="text-center text-xl font-bold">Upload CSV</h4>
+                <h4 className="text-center text-xl font-bold mb-5">Upload CSV</h4>
                
                 <FileUpload receiveCsvData = {addCsvToExpenseList}/>
-                {/* <form onSubmit={handleSubmit} className="pt-5">
-                    <FileUpload />
-                    <div className="text-center pt-5">
-                        <button className="btn btn-success btn-sm" type="submit">
-                            Upload File
-                        </button>
-                    </div>
-                </form> */}
+
                 <Create receiveNewExpense = {addExpensetoList}/>
             </div>
             <div className="basis-3/4">
@@ -125,14 +100,28 @@ const Dashboard = () => {
                                     <td></td>
                                 }
                                 <td>
-                                <button onClick={()=>handleDelete(eachExpense._id)}  className="btn btn-sm btn-error"
-                                type="button">delete</button> 
+                                    <button onClick={()=>handleDelete(eachExpense._id)}  className="btn btn-sm btn-error"
+                                        type="button">delete</button>
+
+                                    {/* <button onClick={()=>handleClick}  className="btn btn-active btn-ghost btn-sm"
+                                        type="button">edit</button> */}
                                 </td>
-                            </tr>
-                        
+                            </tr> 
                     )}
                 </tbody>
             </table>
+            {/* <div>
+                <Edit receiveUpdatedExpense = {addUpdatedExpense}/>
+            </div> */}
+            {/* <div>
+                
+                    {
+                        isActive && (
+                        <Edit />
+                    )}
+                    
+                
+            </div> */}
             </div>
             </div>
         </div>

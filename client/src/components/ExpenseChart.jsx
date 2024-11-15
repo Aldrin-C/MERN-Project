@@ -4,7 +4,7 @@ import * as d3 from "d3";
 const ExpenseChart = ({ width, height, data }) => {
 
 const marginTop = 50;
-const marginBottom = 70;
+const marginBottom = 90;
 const marginLeft = 50;
 const marginRight = 25;
 
@@ -35,16 +35,18 @@ const marginRight = 25;
     d3.select(".x-axis")
       .call(xAxis)
       .selectAll("text")
-      .attr("font-size", "14px")
+      .attr("font-size", "16px")
       // Rotate the labels to make them easier to read.
       .attr("transform", "rotate(-45)")
       .attr("text-anchor", "end")
+      .attr("font-weight", "bold")
       .attr("fill", "dodgerblue");
       
     d3.select(".y-axis")
       .call(yAxis)
       .selectAll("text")
-      .attr("font-size", "14px")
+      .attr("font-size", "16px")
+      .attr("font-weight", "bold")
       .attr("fill", "dodgerblue");
     
   }, [xAxis, yAxis]);
@@ -66,7 +68,7 @@ const marginRight = 25;
               y={yScale((d.amount))}
               height={chartBottomY - yScale(d.amount)}
               width={xScale.bandwidth()}
-              fill="#6baed6"
+              fill="#4682b4"
             />
           ))}
         </g>
@@ -78,6 +80,7 @@ const marginRight = 25;
               y={yScale(d.amount)-10}
               textAnchor="middle"
               fontSize={15}
+              fontWeight="bold"
               fill="dodgerblue"
             >
               {Number((d.amount).toFixed(1)).toLocaleString()}

@@ -22,7 +22,11 @@ const FileUpload = (props) => {
         };
         
 
-        const handleSubmit = (e) =>{
+    const clearForm = () => {
+        setData([])
+    }
+
+    const handleSubmit = (e) =>{
           e.preventDefault();
   
           // console.log(fileData)
@@ -33,6 +37,8 @@ const FileUpload = (props) => {
                   
               })
               .catch(err=> console.log(err))
+
+          clearForm()
       }
 
 

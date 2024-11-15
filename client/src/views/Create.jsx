@@ -76,7 +76,7 @@ const Create = (props) => {
                         onChange={handleChange}/>
             </div>
             <div>
-                <label htmlFor="amount">Amount: $</label> <br></br>
+                <label htmlFor="amount">Amount:</label> <br></br>
                 <input className="border-solid border-2 border-slate-800 rounded-md" 
                         type="number" name="amount" id="amount" value={expenseState.amount} 
                         onChange={handleChange}/>
