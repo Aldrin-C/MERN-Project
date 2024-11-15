@@ -108,6 +108,7 @@ const handleDelete = () =>{
                 <button className="btn btn-sm btn-success" type="submit">
                                 Update
                 </button>
+                <Link to="/" className="btn btn-sm btn-error">Cancel</Link>
         </form>
         <div>
         <div className="carousel w-full rounded pt-20">
