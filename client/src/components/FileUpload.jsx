@@ -46,13 +46,15 @@ const FileUpload = (props) => {
   return (
     <div className="text-center"> 
         {/* <input type="file" accept=".csv" onChange={handleFileChange} className="file-input file-input-bordered file-input-warning w-full max-w-xs" />                   */}
-      <form onSubmit={handleSubmit}>  
-        <input type="file" accept=".csv" onChange={handleFileChange} className="file-input file-input-bordered file-input-warning w-full max-w-xs" />                  
-        <div className="text-center pt-5">
+      <form onSubmit={handleSubmit}> 
+        <label htmlFor="upload"className="text-center text-xl font-bold">Upload CSV</label> 
+        <input id="upload" type="file" accept=".csv" onChange={handleFileChange} className="file-input file-input-bordered file-input-warning w-full max-w-xs" />                  
+          <p style={{fontSize: 10}}>fine print: accepts a very specific, proprietary csv file</p>
+            <div className="text-center pt-5">
                         <button className="btn btn-success btn-sm" type="submit">
-                            Upload File
+                            Submit
                         </button>
-                    </div>
+            </div>
       </form>
     </div>
   )

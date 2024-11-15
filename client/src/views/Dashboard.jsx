@@ -59,7 +59,6 @@ const Dashboard = () => {
         
         <div className="flex justify-between gap-10">
             <div className="py-40"> 
-                <h4 className="text-center text-xl font-bold mb-5">Upload CSV</h4>
                
                 <FileUpload receiveCsvData = {addCsvToExpenseList}/>
 
